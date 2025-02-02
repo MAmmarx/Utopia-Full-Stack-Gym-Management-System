@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTOPIA Gym Wear</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: white;
+            height: 200vh;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            background-color: rgb(30, 30, 30);
+            color: white;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .shoppingcart {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            z-index: 200;
+            cursor: pointer;
+            transition: transform 0.3s ease; 
+        }
+
+        .shoppingcart img {
+            width: 40px;
+            height: 40px;
+        }
+        .shoppingcart:hover {
+                transform: scale(1.2);
+            }
+        #cartContainer {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: #333;
+            padding: 20px;
+            color: white;
+            border-radius: 10px;
+            max-width: 300px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 300;
+        }
+
+        #cartContainer h2 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        #cart {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #video {
+            position: relative;
+            margin-top: 50px; 
+            height: 700px;
+            overflow: hidden;
+            opacity: 50%;
+        }
+
+        #video video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+  
+        .gymwear {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 150;
+        }
+
+        .gymwear img {
+            width: 300px;
+            height: auto;
+        }
+
+        #photo {
+            position: relative;
+            overflow: hidden;
+            height: 650px;
+        }
+
+        #photo img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.1s ease; 
+        }
+        #photo {
+    position: relative;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: left;
+}
+
+.overlay-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.overlay-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 300px;
+    margin: 10px 0 0;
+}
+
+        .women-gymwear {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px; 
+        margin: 20px 0;
+    }
+
+    .women-gymwear img {
+        width: auto;
+        height: 40%;
+    }
+    .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .product-item {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+        }
+
+        .product-item img {
+            max-width: 100%;
+        }
+
+        .product-colors {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+
+        .product-price {
+            font-size: 16px;
+            
+            margin-top: 10px;
+            color:grey;
+        }
+
+        .quick-add {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .quick-add button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .quick-add button:hover {
+            background-color: #555;
+        }
+        footer {
+                background-color: rgb(52, 49, 49);
+                padding: 30px 0;
+                text-align: center;
+                margin-top: auto;
+            }
+            .add-to-cart button {
+                background-color: #afafaf;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                font-size: 14px;
+        }
+
+        .add-to-cart button:hover {
+        background-color: #000000;
+        }
+        .clear-cart {
+    position: fixed;
+    top: 10px;
+    right: 90px; 
+    z-index: 200;
+    background-color: #d3d1d1;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.clear-cart:hover {
+    background-color: #d32f2f;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        You Can Also Pick It Up At The Store
+    </div>
+    <div class="shoppingcart" alt="Shopping Cart" onclick="toggleCart()">
+        <img src="shoppingcart.png" width="60" height="50">
+    </div>
+    
+    <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+    
+    <div id="cartContainer" style="display:none; position: fixed; top: 100px; right: 20px; background-color: #333; padding: 20px; color: white; border-radius: 10px; max-width: 300px;">
+        <h2>Your Cart</h2>
+        <div id="cart" style="display: flex; justify-content: center; align-items: left; padding-right:270px;">
+            <p>Your cart is empty</p>
+        </div>
+    </div>
+
+
+    <section id="video">
+        <video autoplay muted loop>
+            <source src="https://cdn.shopify.com/s/files/1/0587/0439/6474/files/7ww.mp4" type="video/mp4">
+        </video>
+
+    
+        <div class="gymwear">
+            <img src="Gymwearphoto.png" alt="GYM WEAR">
+        </div>
+    </section>
+
+    
+    <section id="photo" style="position: relative;">
+        <img id="scrollImage" src="https://cdn.builder.io/api/v1/image/assets%2Faa96744e7fe74e2a90d22918299c1f1d%2Fbee4892af1714a79916176931e5358d6?format=webp&width=2000" alt="Gym Wear Photo" style="width: 100%; height: auto;">
+        <div class="overlay-text" style="position: absolute; top: 50%; left: 5%; transform: translateY(-50%); color: white; font-family:'Times New Roman', Times, serif; text-align: left;">
+            <h1 style="font-size: 2.5rem; font-weight: bold; margin: 0;">U T O P I A Apparel</h1>
+            <p style="font-size: 1rem; line-height: 1.6; max-width: 300px; margin: 10px 0 0;">
+                Quality. Versatility. Trendsetting. UTOPIA is embarking on a journey to create a new Egyptian athleisure line that provides comfortable, go-to upscale design. Luxury with a conscious.
+            </p>
+        </div>
+    </section>
+
+    <section class="women-gymwear">
+        <img src="Womengymwear.png" alt="Women Gym Wear">
+    </section>
+
+    <div class="product-gallery">
+        <div class="product-item">
+            <img id="image1" src="https://cdn.shopify.com/s/files/1/2185/2813/files/W3442R_01_b1_s1_a1_1_m54_750x.jpg?v=1733511953" alt="Product 1">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #000;" 
+                     onclick="document.getElementById('image1').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W3442R_01_b1_s1_a1_1_m54_750x.jpg?v=1733511953'"></div>
+                <div class="color-swatch" style="background-color: #FFF;" 
+                     onclick="document.getElementById('image1').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W3442R_00_b1_s1_a1_1_m54_750x.jpg?v=1701279299'"></div>
+            </div>
+            <div class="product-price">Alosoft Finesse Long Sleeve - EGP 3,592</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <img id="image2" src="https://cdn.shopify.com/s/files/1/2185/2813/files/W6334R_03842_b1_s1_a1_1_m174_750x.jpg?v=1710446037" alt="Product 2">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #070e46;" 
+                onclick="document.getElementById('image2').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W6334R_03842_b1_s1_a1_1_m174_750x.jpg?v=1710446037'"></div>
+           <div class="color-swatch" style="background-color: #000000;" 
+                onclick="document.getElementById('image2').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W6334R_01_b1_s1_a4_3_m54_400x.jpg?v=1737057136'"></div>
+            </div>
+            <div class="product-price">Match Point Short - EGP 8,873</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <img id="image3" src="https://cdn.shopify.com/s/files/1/2185/2813/files/W2760R_05850_b2_s1_a1_1_m54_750x.jpg?v=1734461815" alt="Product 3">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #f3dbc0;" 
+                onclick="document.getElementById('image3').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W2760R_05850_b2_s1_a1_1_m54_750x.jpg?v=1734461815'"></div>
+           <div class="color-swatch" style="background-color: #feb2dd;" 
+                onclick="document.getElementById('image3').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W2760R_05602_b1_s1_a1_1_m199_750x.jpg?v=1720667033'"></div>
+           <div class="color-swatch" style="background-color: #b0d0ba;" 
+                onclick="document.getElementById('image3').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W2760R_05444_b1_s1_a4_1_m54_750x.jpg?v=1724278313'"></div>
+            </div>
+            <div class="product-price">Alosoft Ribbed Revelation Tank - EGP 6,760</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <img src="https://cdn.shopify.com/s/files/1/2185/2813/files/W54172R_03320_b2_s1_a1_1_m122_750x.jpg?v=1732652898" alt="Product 4">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #999;"></div>
+            </div>
+            <div class="product-price">Alosoft High-Waist Heart Throb Legging - EGP 5,892</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+
+    <br><br><br><br><br><br>
+    <div class="product-gallery">
+                <div class="product-item">
+                    <img id="image5" src="https://cdn.shopify.com/s/files/1/2185/2813/files/W54190R_06132_b2_s1_a1_1_m176_750x.jpg?v=1737310549" alt="Product 4">
+                    <div class="product-colors">
+                        <div class="color-swatch" style="background-color: #000;" 
+                        onclick="document.getElementById('image5').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W3914R_01_b1_s1_a1_1_m230_750x.jpg?v=1735337891'"></div>
+                   <div class="color-swatch" style="background-color: #888;" 
+                        onclick="document.getElementById('image5').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W54190R_06132_b2_s1_a1_1_m176_750x.jpg?v=1737310549'"></div>
+                    </div>
+                    <div class="product-price">Pointelle Sweater High-Waist Be Mine Legging - EGP 7,200</div>
+                    <div class="quick-add">
+                        <button>XS</button>
+                        <button>S</button>
+                        <button>M</button>
+                        <button>L</button>
+                    </div>
+                    <div class="add-to-cart">
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+        <div class="product-item">
+            <img id="image6"src="https://cdn.shopify.com/s/files/1/2185/2813/files/W3694R_00_b2_s1_a1_1_m227_750x.jpg?v=1730755718" alt="Product 4">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #000;" 
+                onclick="document.getElementById('image6').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W3694R_01_b1_s1_a1_1_m18_96188776-6c29-41f5-bc89-c0f74e897267_750x.jpg?v=1701280111'"></div>
+           <div class="color-swatch" style="background-color: #f7c0e2;" 
+                onclick="document.getElementById('image6').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W3694R_05817_b1_s1_a1_1_m230_750x.jpg?v=1735000185'"></div>
+           <div class="color-swatch" style="background-color: #FFF;" 
+                onclick="document.getElementById('image6').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W3694R_00_b2_s1_a1_1_m227_750x.jpg?v=1730755718'"></div>
+            </div>
+            <div class="product-price">Alosoft 1/2 Zip Rapid Pullover - EGP 2,360</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+                <div class="product-item">
+                    <img id="image7" src="https://cdn.shopify.com/s/files/1/2185/2813/files/W2775R_01_b1_s1_a1_1_m18_750x.jpg?v=1732298493" alt="Product 4">
+                    <div class="product-colors">
+                        <div class="color-swatch" style="background-color: #000;" 
+                        onclick="document.getElementById('image7').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W3442R_01_b1_s1_a1_1_m54_750x.jpg?v=1733511953'"></div>
+                   <div class="color-swatch" style="background-color: #064e04;" 
+                        onclick="document.getElementById('image7').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W2775R_05819_b1_s1_a4_1_m18_2fccc739-97bc-4ab7-b263-1879a864b2c2_400x.jpg?v=1732746331'"></div>
+                   <div class="color-swatch" style="background-color: #FFF;" 
+                        onclick="document.getElementById('image7').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W2775R_00_b1_s1_a5_1_m191_400x.jpg?v=1736463952'"></div>
+                    </div>
+                    <div class="product-price">Alosoft Sweet Talker Tank
+                        Black - EGP 4,890</div>
+                    <div class="quick-add">
+                        <button>XS</button>
+                        <button>S</button>
+                        <button>M</button>
+                        <button>L</button>
+                    </div>
+                    <div class="add-to-cart">
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+        <div class="product-item">
+            <img id="image8" src="https://cdn.shopify.com/s/files/1/2185/2813/files/W9777R_01_b1_s1_a1_1_m18_750x.jpg?v=1734054801" alt="Product 4">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #000;" 
+                onclick="document.getElementById('image8').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W9777R_01_b1_s1_a1_1_m18_750x.jpg?v=1734054801'"></div>
+           <div class="color-swatch" style="background-color: #fdfbc9;" 
+                onclick="document.getElementById('image8').src='https://cdn.shopify.com/s/files/1/2185/2813/files/W9777R_05599_b1_s1_a3_2_m196_400x.jpg?v=1723053443'"></div>
+         </div>
+            <div class="product-price">Ribbed En Pointe Tank - EGP 3,550</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <section class="women-gymwear">
+        <img src="Mengymwear.jpeg.jpg" alt="Men Gym Wear">
+    </section>
+
+    <div class="product-gallery">
+        <div class="product-item">
+            <img src="https://cdn.shopify.com/s/files/1/2185/2813/files/M3216R_03500_b1_s1_a1_1_m93_dd756041-2d17-4871-9aba-85a106398321_750x.jpg?v=1724457598" alt="Product 1">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #782828;"></div>
+            </div>
+            <div class="product-price">Renown Sleeveless Hoodie - EGP 3,592</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <img src="https://cdn.shopify.com/s/files/1/2185/2813/files/M3181R_04064_b1_s3_a1_1_m195_750x.jpg?v=1734054643" alt="Product 2">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #292703;"></div>
+            </div>
+            <div class="product-price">Conquer Reform Crewneck Long Sleeve - EGP 7,880</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <img id="image11"src="https://cdn.shopify.com/s/files/1/2185/2813/files/A0423U_05541_b1_s1_a4_3960bd48-27e4-4eef-bd96-2ed5f6491bd5_750x.jpg?v=1735675611" alt="Product 3">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #6e6e6c;"></div>
+            </div>
+            <div class="product-price">Performance Ear Warmers
+                - EGP 6,400</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <img id="image12"src="https://cdn.shopify.com/s/files/1/2185/2813/files/M1205R_04064_b1_s3_a3_1_m195_750x.jpg?v=1734054749" alt="Product 4">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #2a3e04;" 
+                onclick="document.getElementById('image12').src='https://cdn.shopify.com/s/files/1/2185/2813/files/M1205R_04064_b1_s3_a3_1_m195_750x.jpg?v=1734054749'"></div>
+           <div class="color-swatch" style="background-color: #888;" 
+                onclick="document.getElementById('image12').src='https://cdn.shopify.com/s/files/1/2185/2813/files/M1205R_02910_b1_s1_a1_1_m214_750x.jpg?v=1736364939'"></div>
+           <div class="color-swatch" style="background-color: #0a0527;" 
+                onclick="document.getElementById('image12').src='https://cdn.shopify.com/s/files/1/2185/2813/files/M1205R_03842_b1_s1_a1_1_m203_750x.jpg?v=1734054711'"></div>
+   
+            </div>
+            <div class="product-price">Conquer Reform Crewneck Short Sleeve - EGP 3,400</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+
+    <br><br><br><br><br><br>
+    <div class="product-gallery">
+                <div class="product-item">
+                    <img src="https://cdn.shopify.com/s/files/1/2185/2813/files/M3199R_01_b1_s1_a1_1_m214_750x.jpg?v=1736369680" alt="Product 4">
+                    <div class="product-colors">
+                        <div class="color-swatch" style="background-color: #222;"></div>
+                    </div>
+                    <div class="product-price">Conquer Reform Long Sleeve With Hood - EGP 2,600</div>
+                    <div class="quick-add">
+                        <button>XS</button>
+                        <button>S</button>
+                        <button>M</button>
+                        <button>L</button>
+                    </div>
+                    <div class="add-to-cart">
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+
+        <div class="product-item">
+            <img id="image14" src="https://cdn.shopify.com/s/files/1/2185/2813/files/M3193R_03842_b1_s3_a1_1_m195_750x.jpg?v=1734054621" alt="Product 4">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #09053d;" 
+                onclick="document.getElementById('image14').src='https://cdn.shopify.com/s/files/1/2185/2813/files/M3193R_03842_b1_s3_a1_1_m195_750x.jpg?v=1734054621'"></div>
+           <div class="color-swatch" style="background-color: #000000;" 
+                onclick="document.getElementById('image14').src='https://cdn.shopify.com/s/files/1/2185/2813/files/M3193R_01_b1_s1_a1_1_m221_750x.jpg?v=1736365672'"></div>
+           <div class="color-swatch" style="background-color: #a3a3a2;" 
+                onclick="document.getElementById('image14').src='https://cdn.shopify.com/s/files/1/2185/2813/files/M3193R_02910_b1_s1_a1_1_m198_750x.jpg?v=1734054620'"></div>
+
+            </div>
+            <div class="product-price">Conquer 1/4 Zip Reform Long Sleeve - EGP 5,650</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+                <div class="product-item">
+                    <img id="image15"src="https://cdn.shopify.com/s/files/1/2185/2813/files/M1205R_05815_b1_s1_a1_1_m221_750x.jpg?v=1734455200" alt="Product 4">
+                    <div class="product-colors">
+                        <div class="color-swatch" style="background-color: #814545;" 
+                        onclick="document.getElementById('image15').src='https://cdn.shopify.com/s/files/1/2185/2813/files/M1205R_05815_b1_s1_a1_1_m221_750x.jpg?v=1734455200'"></div>
+                   <div class="color-swatch" style="background-color: #cacaca;" 
+                        onclick="document.getElementById('image15').src='https://cdn.shopify.com/s/files/1/2185/2813/products/M1133R_02910_b1_s3_a1_1_m93_750x.jpg?v=1656028503'"></div>
+                   <div class="color-swatch" style="background-color: #bab697;" 
+                        onclick="document.getElementById('image15').src='https://cdn.shopify.com/s/files/1/2185/2813/files/M1133R_05438_b1_s1_a3_1_m180_8cd5bd43-339e-45cc-a89e-c1063bcf4c83_750x.jpg?v=1719965656'"></div>
+                    </div>
+                    <div class="product-price">Conquer Reform Crewneck Short Sleeve - EGP 6,250</div>
+                    <div class="quick-add">
+                        <button>XS</button>
+                        <button>S</button>
+                        <button>M</button>
+                        <button>L</button>
+                    </div>
+                    <div class="add-to-cart">
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+
+        <div class="product-item">
+            <img src="https://cdn.shopify.com/s/files/1/2185/2813/files/M1205R_01_b1_s1_a1_1_m180_750x.jpg?v=1736364701" alt="Product 4">
+            <div class="product-colors">
+                <div class="color-swatch" style="background-color: #222;"></div>
+            </div>
+            <div class="product-price">Conquer Reform Crewneck Short Sleeve - EGP 3,550</div>
+            <div class="quick-add">
+                <button>XS</button>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+            </div>
+            <div class="add-to-cart">
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br>
+    <footer>
+            
+        <div class="social-icons">
+            <a href="https://www.instagram.com/la7gym/?hl=en" target="_blank">
+                <img src="https://www.aloyoga.com/cdn/shop/files/instagram2021.svg?v=15745790383220268811" alt="Instagram" />
+            </a>
+            <a href="https://www.facebook.com/la7gym/?locale=ar_AR" target="_blank">
+                <img src="https://www.aloyoga.com/cdn/shop/files/facebook2021.svg?v=4098279864862808269" alt="Facebook" />
+            </a>
+            <a href="https://www.youtube.com/channel/UCZ4NEgJB0svYpss5RTus59A" target="_blank">
+                <img src="https://www.aloyoga.com/cdn/shop/files/youtube2021.svg?v=13243599999976738993" alt="YouTube" />
+            </a>
+        </div>
+            <p class="rights">&copy; 2024 UTOPIA Gym. All rights reserved.</p>
+                <p class="contactus">
+                    Contact us:<br>
+    
+                    New Giza | +20 111 811 9701<br>
+                    Uptown   |+20 115 038 8119<br>
+                    Arkan    |  +20 115 449 9747<br>
+                    <br>
+                    
+                    Email : info@Utopiagym.com
+                </p>
+                <p class="contactus2">
+                    We are dedicated to the pursuit of peak performance. Whether you are looking for a fun workout, achieving some set goals or just maintaining a healthy lifestyle, we’re in it together. You will never feel lost, confused or bored. 
+                <br>
+                <br>
+                    “Your Wellbeing is what we do” 
+                </p>
+    
+        </footer>
+    <script>
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+            function addToCart(event) {
+                event.preventDefault();
+
+                const productItem = event.target.closest('.product-item');
+                const trainerSelect = document.querySelector('select[name="trainer"]');
+
+                if (productItem) {
+                const productPriceText = productItem.querySelector('.product-price').textContent;
+                const [productName, productPrice] = productPriceText.split(' - ');
+                cart.push({ name: productName.trim(), price: productPrice.trim() });
+                } else if (trainerSelect) {
+                const selectedTrainer = trainerSelect.options[trainerSelect.selectedIndex];
+                const trainerName = selectedTrainer.value;
+                const trainerPrice = selectedTrainer.text.split(' - ')[1];
+                cart.push({ name: trainerName.trim(), price: trainerPrice.trim() });
+            }
+
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+
+            updateCart();
+            }
+
+            function updateCart() {
+                const cartContainer = document.getElementById('cartContainer');
+                const cartElement = document.getElementById('cart');
+
+                cartElement.innerHTML = '';
+
+                if (cart.length === 0) {
+                    cartElement.innerHTML = '<p>Your cart is empty</p>';
+                } else {
+                    cart.forEach(item => {
+                        const itemElement = document.createElement('div');
+                        itemElement.innerHTML = `<p>${item.name} - ${item.price}</p>`;
+                        cartElement.appendChild(itemElement);
+                    });
+                }
+
+                cartContainer.style.display = 'block';
+    }
+
+window.addEventListener('load', () => {
+    cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    updateCart();
+});
+
+document.querySelectorAll('.add-to-cart button, button[type="submit"]').forEach(button => {
+    button.addEventListener('click', addToCart);
+});
+
+function toggleCart() {
+    const cartContainer = document.getElementById('cartContainer');
+    cartContainer.style.display = cartContainer.style.display === 'none' ? 'block' : 'none';
+}
+
+        const image = document.getElementById('scrollImage');
+
+        window.addEventListener('scroll', () => {
+            
+            const scaleFactor = 1 + window.scrollY * 0.0002; 
+            image.style.transform = `scale(${scaleFactor})`;
+        });
+
+        function clearCart() {
+    sessionStorage.removeItem('cart');
+    cart = [];
+
+    updateCart();
+
+
+    const cartContainer = document.getElementById('cartContainer');
+    cartContainer.style.display = 'none';
+
+    alert('Cart has been cleared.');
+}
+
+    </script>
+</body>
+</html>
