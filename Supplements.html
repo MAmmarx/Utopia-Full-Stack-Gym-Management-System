@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UTOPIA Supplements</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: black;
+                color: white;
+            }
+
+            .rotating-header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background-color: black;
+                color: white;
+                text-align: center;
+                font-size: 18px;
+                padding: 10px 0;
+                z-index: 1000;
+                overflow: hidden;
+            }
+
+            .rotating-header span {
+                display: inline-block;
+                animation: slide 25s linear infinite;
+            }
+
+            @keyframes slide {
+                0% { transform: translateX(100%); }
+                100% { transform: translateX(-100%); }
+            }
+
+            .shoppingcart-container {
+                position: fixed;
+                top: 50px;
+                right: 50px;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+            }
+
+            .shoppingcart {
+                transition: transform 0.3s ease;
+            }
+
+            .shoppingcart:hover {
+                transform: scale(1.2);
+            }
+
+            .clear-cart {
+                margin-left: 10px;
+                background-color: #cdcbcb;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background-color 0.3s ease;
+            }
+
+            .clear-cart:hover {
+                background-color: #d32f2f;
+            }
+
+
+            #image-section {
+                position: relative;
+                margin-top: 70px;
+                height: 700px;
+                overflow: hidden;
+            }
+
+            #image-section img.background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            #image-section img.overlay {
+                position: absolute;
+                top: 25%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                max-width: 50%;
+                height: auto;
+            }
+
+            #new-image-section {
+                position: relative;
+                height: 700px;
+                overflow: hidden;
+                opacity: 0;
+                transform: translateY(100px); 
+                transition: all 1s ease; 
+            }
+
+            #new-image-section.visible {
+                opacity: 1;
+                transform: translateY(0); 
+            }
+            #new-image-section img.background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .shopnow{
+                padding-left:10%;
+            }
+            .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: left;
+}
+
+.overlay-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.overlay-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 300px;
+    margin: 10px 0 0;
+}
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .supplements-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+
+
+        .supplement-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain; 
+            filter: drop-shadow(0 0 15px white); 
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .supplement-info {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .supplement-info h3 {
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        .supplement-info p {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .add-to-cart {
+            margin-top: 10px;
+            background-color: #a9aaa9;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #000000;
+        }
+
+   
+        .supplement-card:hover img {
+            transform: scale(1.1); 
+            animation: breathe 1.5s infinite alternate;
+        }
+        #cartContainer {
+    display: none;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: #333;
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    max-width: 300px;
+    z-index: 2000;
+}
+
+        @keyframes breathe {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+        footer {
+                background-color: rgb(52, 49, 49);
+                padding: 30px 0;
+                text-align: center;
+                margin-top: auto;
+            }
+            .shopnow {
+    text-align: left;
+    padding-left: 10%;
+}
+        </style>
+    </head>
+    <body>
+ 
+        <div class="rotating-header">
+            <span>FREE SHIPPING OVER 5,500 EGP &nbsp; FREE SHIPPING OVER 5,500 EGP &nbsp; FREE SHIPPING OVER 5,500 EGP &nbsp; FREE SHIPPING OVER 5,500 EGP</span>
+        </div>
+
+ 
+        <div class="shoppingcart-container">
+            <div class="shoppingcart" alt="Shopping Cart" onclick="toggleCart()">
+                <img src="shoppingcart.png" width="60" height="50">
+            </div>
+            <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+        </div>
+
+ 
+        <div id="cartContainer" style="display:none; position: fixed; top: 100px; right: 20px; background-color: #333; padding: 20px; color: white; border-radius: 10px; max-width: 300px;">
+            <h2>Your Cart</h2>
+            <div id="cart" style="display: flex; justify-content: center; align-items: left; padding-right:270px;">
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+
+
+        <section id="image-section">
+            <img class="background" src="https://hdmuscle.com/cdn/shop/files/MR403310.jpg?v=1732558944&width=2000" alt="Background Image">
+            <img class="overlay" src="Supplementsimage.png" alt="Supplements Overlay">
+        </section>
+
+ 
+        <section id="new-image-section" class="hidden">
+            <img class="background" src="https://int.esn.com/cdn/shop/files/KW04_GridTeaser_Desktop_Referafriend_1920x1080_DE.jpg?v=1737457628&width=1920" alt="New Background Image">
+            <div class="overlay-text" style="position: absolute; top: 50%; left: 5%; transform: translateY(-50%); color: white; font-family:'Times New Roman', Times, serif; text-align: left;">
+                <h1 style="font-size: 2.5rem; font-weight: bold; margin: 0;">Why U T O P I A Supplements?</h1>
+                <p style="font-size: 1rem; line-height: 1.6; max-width: 300px; margin: 10px 0 0;">
+                    Whether you're building muscle, enhancing endurance, or optimizing recovery, our wide range of supplements is crafted to support your unique fitness journey.
+                    Our labels tell the full story—no hidden fillers, no harmful additives, just clean, effective nutrition.
+                    UTOPIA Supplements are developed with the latest research in mind, helping you achieve results faster and safer.
+                </p>
+            </div>
+        </section>
+        <br><br><br><br<br><br><br>
+        <h1 class="shopnow">SHOP NOW!</h1>
+        <div class="supplements-container">
+            <div class="supplement-card">
+                <img src="supp1.png" alt="Supplement 1">
+                <div class="supplement-info">
+                    <h3>CollagenHD</h3>
+                    <p>Price: 3,220 EGP</p>
+                    <button class="add-to-cart" data-name="CollagenHD" data-price="3,220 EGP">Add to Cart</button>
+                </div>
+            </div>
+            <div class="supplement-card">
+                <img src="supp2.png" alt="Supplement 2">
+                <div class="supplement-info">
+                    <h3>ProHD Clear</h3>
+                    <p>Price: 1,750 EGP</p>
+                    <button class="add-to-cart" data-name="ProHD Clear" data-price="1,750 EGP">Add to Cart</button>
+                </div>
+            </div>
+            <div class="supplement-card">
+                <img src="supp3.png" alt="Supplement 3">
+                <div class="supplement-info">
+                    <h3>MultiHD</h3>
+                    <p>Price: 2,230 EGP</p>
+                    <button class="add-to-cart" data-name="MultiHD" data-price="2,230 EGP">Add to Cart</button>
+                </div>
+            </div>
+            <div class="supplement-card">
+                <img src="supp4.png" alt="Supplement 4">
+                <div class="supplement-info">
+                    <h3>PreHD Elite</h3>
+                    <p>Price: 2,200 EGP</p>
+                    <button class="add-to-cart" data-name="PreHD Elite" data-price="2,200 EGP">Add to Cart</button>
+                </div>
+            </div>
+            <div class="supplement-card">
+                <img src="supp5.png" alt="Supplement 5">
+                <div class="supplement-info">
+                    <h3>Magnesium</h3>
+                    <p>Price: 4,100 EGP</p>
+                    <button class="add-to-cart" data-name="Magnesium" data-price="4,100 EGP">Add to Cart</button>
+                </div>
+            </div>
+            <div class="supplement-card">
+                <img src="supp6.png" alt="Supplement 6">
+                <div class="supplement-info">
+                    <h3>PreHD Variant 001</h3>
+                    <p>Price: 2,300 EGP</p>
+                    <button class="add-to-cart" data-name="PreHD Variant 001" data-price="2,300 EGP">Add to Cart</button>
+                </div>
+            </div>
+            <div class="supplement-card">
+                <img src="supp7.png" alt="Supplement 7">
+                <div class="supplement-info">
+                    <h3>Ayone Nutrition Creatine</h3>
+                    <p>Price: 2,570 EGP</p>
+                    <button class="add-to-cart" data-name="Ayone Nutrition Creatine" data-price="2,570 EGP">Add to Cart</button>
+                </div>
+            </div>
+            <div class="supplement-card">
+                <img src="supp8.png" alt="Supplement 8">
+                <div class="supplement-info">
+                    <h3>Elite Lean</h3>
+                    <p>Price: 1,500 EGP</p>
+                    <button class="add-to-cart" data-name="Elite Lean" data-price="1,500 EGP">Add to Cart</button>
+                </div>
+            </div>
+            <div class="supplement-card">
+                <img src="supp9.png" alt="Supplement 9">
+                <div class="supplement-info">
+                    <h3>Ayone Nutrition Pre-Workout</h3>
+                    <p>Price: 1,900 EGP</p>
+                    <button class="add-to-cart" data-name="Ayone Nutrition Pre-Workout" data-price="2,300 EGP">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br<br><br><br>
+        <footer>
+            
+            <div class="social-icons">
+                <a href="https://www.instagram.com/la7gym/?hl=en" target="_blank">
+                    <img src="https://www.aloyoga.com/cdn/shop/files/instagram2021.svg?v=15745790383220268811" alt="Instagram" />
+                </a>
+                <a href="https://www.facebook.com/la7gym/?locale=ar_AR" target="_blank">
+                    <img src="https://www.aloyoga.com/cdn/shop/files/facebook2021.svg?v=4098279864862808269" alt="Facebook" />
+                </a>
+                <a href="https://www.youtube.com/channel/UCZ4NEgJB0svYpss5RTus59A" target="_blank">
+                    <img src="https://www.aloyoga.com/cdn/shop/files/youtube2021.svg?v=13243599999976738993" alt="YouTube" />
+                </a>
+            </div>
+                <p class="rights">&copy; 2024 UTOPIA Gym. All rights reserved.</p>
+                    <p class="contactus">
+                        Contact us:<br>
+        
+                        New Giza | +20 111 811 9701<br>
+                        Uptown   |+20 115 038 8119<br>
+                        Arkan    |  +20 115 449 9747<br>
+                        <br>
+                        
+                        Email : info@Utopiagym.com
+                    </p>
+                    <p class="contactus2">
+                        We are dedicated to the pursuit of peak performance. Whether you are looking for a fun workout, achieving some set goals or just maintaining a healthy lifestyle, we’re in it together. You will never feel lost, confused or bored. 
+                    <br>
+                    <br>
+                        “Your Wellbeing is what we do” 
+                    </p>
+        
+            </footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const newImageSection = document.querySelector("#new-image-section");
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            newImageSection.classList.add("visible");
+                        }
+                    });
+                });
+
+                observer.observe(newImageSection);
+            });
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+function addToCart(event) {
+    event.preventDefault();
+
+    const button = event.target;
+    const productName = button.getAttribute('data-name');
+    const productPrice = button.getAttribute('data-price');
+
+    cart.push({ name: productName, price: productPrice });
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+
+    updateCart();
+}
+
+function updateCart() {
+    const cartContainer = document.getElementById('cartContainer');
+    const cartElement = document.getElementById('cart');
+
+    cartElement.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartElement.innerHTML = '<p>Your cart is empty</p>';
+    } else {
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.innerHTML = `<p>${item.name} - ${item.price}</p>`;
+            cartElement.appendChild(itemElement);
+        });
+    }
+
+    cartContainer.style.display = 'block';
+}
+
+window.addEventListener('load', () => {
+    cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    updateCart();
+});
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', addToCart);
+});
+
+function toggleCart() {
+    const cartContainer = document.getElementById('cartContainer');
+    cartContainer.style.display = cartContainer.style.display === 'none' ? 'block' : 'none';
+}
+
+function clearCart() {
+    sessionStorage.removeItem('cart');
+    cart = [];
+    updateCart();
+
+    alert('Cart has been cleared.');
+}
+        </script>
+    </body>
+</html>
