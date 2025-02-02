@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UTOPIA Sign-Up Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('gym.jpg'); 
+            background-size: cover;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+        }
+
+        .signup-box {
+            width: 450px;
+            margin: 70px auto 0;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .signup-box h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .user-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .user-box input,
+        .user-box select {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            outline: none;
+        }
+
+        .user-box label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #999;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .user-box input:focus ~ label,
+        .user-box input:valid ~ label {
+            top: -20px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .user-box input:focus,
+        .user-box input:valid {
+            border-bottom: 2px solid #555;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #808080;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .password-toggle:hover {
+            color: #131415;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px 0;
+            margin-top: 20px;
+            border: none;
+            background-color: #808080;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #131415;
+        }
+
+        .login-box {
+            width: 450px;
+            margin: 20px auto 40px;
+            text-align: center;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .login-box p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .login-box a {
+            text-decoration: none;
+            color: #808080;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-box a:hover {
+            color: #131415;
+        }
+
+        .terms-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .terms-container input {
+            margin-right: 10px;
+        }
+
+        .terms-container a {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .terms-container label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .modal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 60%;
+            padding: 20px;
+            border-radius: 10px;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #f4f4f4;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .rights,
+        .contactus,
+        .contactus2 {
+            font-size: 14px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .contactus a {
+            text-decoration: none;
+            color: #131415;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="signup-box">
+        <h2>Sign Up</h2>
+        <form>
+            <div class="user-box">
+                <input type="text" id="firstName" name="firstName" required=""/>
+                <label for="firstName">First Name</label>
+            </div>
+            <div class="user-box">
+                <input type="text" id="secondName" name="secondName" required=""/>
+                <label for="secondName">Second Name</label>
+            </div>
+            <div class="user-box">
+                <input type="email" id="email" name="email" required=""/>
+                <label for="email">Email Address</label>
+            </div>
+            <div class="user-box">
+                <input type="tel" id="phone" name="phone" required=""/>
+                <label for="phone">Phone Number</label>
+            </div>
+            <div class="user-box">
+                <input type="text" id="username" name="username" required=""/>
+                <label for="username">Username</label>
+            </div>
+            <div class="user-box">
+                <input type="date" id="dob" name="dob" required=""/>
+            </div>
+            <div class="user-box" style="position: relative;">
+                <input type="password" id="password" name="password" required=""/>
+                <label for="password">Password</label>
+                <span class="password-toggle" id="togglePassword">Show</span>
+            </div>
+            <div class="terms-container">
+                <input type="checkbox" id="terms" name="terms" required />
+                <label for="terms">
+                    By signing up, you agree to our 
+                    <a href="javascript:void(0)" id="termsLink">Terms and Conditions</a>
+                </label>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    
+    <div class="login-box">
+        <p>Do you already have an account? <a href="login.html">Log In</a></p>
+    </div>
+
+    <div class="modal-background" id="termsModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-header">Terms and Conditions</div>
+            <div class="modal-body">
+                <p>
+                    Welcome to UTOPIA Gym. By signing up, you agree to the following terms and conditions:
+                </p>
+                <p>
+                    1. Membership is non-transferable and can be revoked at any time for violations of gym rules.
+                    <br>
+                    2. All members must be at least 18 years old or have parental consent.
+                    <br>
+                    3. Members must maintain appropriate behavior at all times within the gym premises.
+                    <br>
+                    4. The gym is not responsible for any injuries or accidents occurring during use of the facilities.
+                    <br>
+                    5. Members are expected to follow the equipment usage guidelines and clean up after use.
+                    <br>
+                    6. Failure to pay membership fees may result in suspension or termination of membership.
+                    <br>
+                    7. The gym reserves the right to modify or update these terms and conditions at any time.
+                    <br>
+                    <br></br>
+                    <strong>By clicking "Sign Up," you confirm that you have read and agree to these terms and conditions.</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/la7gym/?hl=en" target="_blank">
+                <img src="https://www.aloyoga.com/cdn/shop/files/instagram2021.svg?v=15745790383220268811" alt="Instagram" />
+            </a>
+            <a href="https://www.facebook.com/la7gym/?locale=ar_AR" target="_blank">
+                <img src="https://www.aloyoga.com/cdn/shop/files/facebook2021.svg?v=4098279864862808269" alt="Facebook" />
+            </a>
+            <a href="https://www.youtube.com/channel/UCZ4NEgJB0svYpss5RTus59A" target="_blank">
+                <img src="https://www.aloyoga.com/cdn/shop/files/youtube2021.svg?v=13243599999976738993" alt="YouTube" />
+            </a>
+        </div>
+        <p class="rights">&copy; 2024 UTOPIA Gym. All rights reserved.</p>
+        <p class="contactus">
+            Contact us:<br>
+            New Giza | +20 111 811 9701<br>
+            Uptown   | +20 115 038 8119<br>
+            Arkan    | +20 115 449 9747<br><br>
+            Email : info@Utopiagym.com
+        </p>
+        <p class="contactus2">
+            We are dedicated to the pursuit of peak performance. Whether you are looking for a fun workout, achieving some set goals or just maintaining a healthy lifestyle, we’re in it together. You will never feel lost, confused or bored. 
+            <br><br>
+            “Your Wellbeing is what we do”
+        </p>
+    </footer>
+
+    <script>
+
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const passwordFieldType = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = passwordFieldType;
+            this.textContent = passwordFieldType === 'password' ? 'Show' : 'Hide';
+        });
+
+        const termsLink = document.getElementById('termsLink');
+        const termsModal = document.getElementById('termsModal');
+        const closeModal = document.getElementById('closeModal');
+
+        termsLink.addEventListener('click', function() {
+            termsModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', function() {
+            termsModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === termsModal) {
+                termsModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
